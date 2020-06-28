@@ -161,7 +161,7 @@ display: flex;
 .axisContext text{
   font-family: 'Noto Sans', sans-serif;
   font-weight: 300;
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   color:#575757;
   stroke:none
 }
@@ -199,4 +199,18 @@ div.tooltip {
     /*transform: translate(-5%,-5%);*/
 
     z-index:2;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+
+.axisContext text{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color:#575757;
+  stroke:none
+}
+  
 }

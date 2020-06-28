@@ -107,8 +107,8 @@
     var nested ;
 
 
-    var margin = { top: 20, right: 30, bottom: 30, left: 40 },
-        width = 500 - margin.left - margin.right,
+    var margin = { top: 20, right: 30, bottom: 30, left: 50 },
+        width = document.getElementById("chart").offsetWidth - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
 
@@ -195,7 +195,7 @@
                 .range([0, x0.bandwidth() - 10]);
 
             var z = d3.scaleOrdinal()
-                .range(["#E73741", "#0F8FD9"]);
+                .range(["#0090ff", "#0b0064"]);
 
             var svg = d3.select("#chart").append("svg")
                 .attr("width", width + margin.left + margin.right)
@@ -299,9 +299,7 @@
 
             svg.append("g")
                 .attr("class", "axisContext")
-                .call(d3.axisLeft(y).tickFormat(function (d) {
-                    return y.tickFormat(5, d3.format(".1f"))(d)
-                }).tickSize(-(width)));
+                .call(d3.axisLeft(y).tickFormat(d => d + "%").tickSize(-(width)));
 
                
 
