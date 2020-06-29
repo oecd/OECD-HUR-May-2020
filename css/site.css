@@ -202,13 +202,26 @@ div.tooltip {
 }
 
 
+@media only screen and (max-width: 850px) {
+
+
+.axisContext text{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.45rem;
+  color:#575757;
+  stroke:none
+}
+  
+}
+
 @media only screen and (max-width: 600px) {
 
 
 .axisContext text{
   font-family: 'Noto Sans', sans-serif;
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   color:#575757;
   stroke:none
 }
