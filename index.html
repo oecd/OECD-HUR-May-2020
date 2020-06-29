@@ -103,7 +103,7 @@
     });
 
     var label = [{ "code": "LRHUTTTT", "label": "Total" },{ "code": "LRHU24TT", "label": "Youth (15-24" }, { "code": "LRHUADTT", "label": "Aged 25+"}, { "code": "LRHUTTMA", "label": "Men" },{"code":"LRHUTTFE","label":"Women"}]
-    var timeLabel= ["2020-03", "2020-04"]
+    var timeLabel= ["March 2020", "April 2020"]
     var nested ;
 
     var ISOmemory;
@@ -245,7 +245,7 @@
                 if (k.values[0].measure == "LRHUTTFE")
                     XLabel = "Women"
 
-                chartData.push({"measure": XLabel,"2020-03": k.values[0].value[0].value,"2020-04": k.values[0].value[1].value})
+                chartData.push({"measure": XLabel,"March 2020": k.values[0].value[0].value,"April 2020": k.values[0].value[1].value})
             })
 
             
