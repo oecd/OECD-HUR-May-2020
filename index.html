@@ -75,7 +75,7 @@
 
             <!--</div>-->
         
-        <h1>Young people and women hit harder by jobs crisis</h1>
+        <h1>Job losses greater for young people and women</h1>
         <h2>Unemployment rate as % of labour force</h2>
         <br>
         <div id="modedemploi">
@@ -102,7 +102,7 @@
         $('#country_dropdown').select2({ width: '180px' });
     });
 
-    var label = [{ "code": "LRHUTTTT", "label": "Total" },{ "code": "LRHU24TT", "label": "Youth (15-24" }, { "code": "LRHUADTT", "label": "Aged 25+"}, { "code": "LRHUTTMA", "label": "Men" },{"code":"LRHUTTFE","label":"Women"}]
+    var label = [{ "code": "LRHUTTTT", "label": "Total" },{ "code": "LRHU24TT", "label": "Young people" }, { "code": "LRHUADTT", "label": "Aged 25+"}, { "code": "LRHUTTMA", "label": "Men" },{"code":"LRHUTTFE","label":"Women"}]
     var timeLabel= ["March 2020", "April 2020"]
     var nested ;
 
@@ -193,7 +193,7 @@
                 .range([height, 0]);
             
             var x0 = d3.scaleBand()
-                .domain(["Total"," ", "Youth (15-24)", "Aged 25+","", "Men", "Women"])
+                .domain(["Total"," ", "Young people", "Aged 25+","", "Men", "Women"])
                 .range([0, width]);
 
             var x1 = d3.scaleBand().domain(timeLabel)
@@ -234,7 +234,7 @@
                     XLabel= "Total"
                 
                 if (k.values[0].measure == "LRHU24TT")
-                    XLabel = "Youth (15-24)"
+                    XLabel = "Young people"
                 
                 if (k.values[0].measure == "LRHUADTT")
                     XLabel = "Aged 25+"
