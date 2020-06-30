@@ -193,7 +193,7 @@
                 .range([height, 0]);
             
             var x0 = d3.scaleBand()
-                .domain(["Total"," ", "Young people", "Aged 25+","", "Men", "Women"])
+                .domain(["Young people", "Aged 25+","", "Women", "Men", " ", "Total" ])
                 .range([0, width]);
 
             var x1 = d3.scaleBand().domain(timeLabel)
@@ -254,6 +254,13 @@
                 .selectAll("g")
                 .data(chartData)
                 .enter().append("g")
+                .style("opacity", function (d) {
+                    console.log(d)
+                    if(d["measure"]== "Young people" || d["measure"] == "Women")
+                        return "1";
+                    else
+                        return "0.6";
+                })
              .attr("transform", function (d, i) { return "translate(" + x0(d["measure"]) + ",0)"; })
                  //  .attr("transform", d => 'translate(${x0(d["measure"])},0)')
                 .selectAll("rect")
@@ -308,7 +315,7 @@
 
                
 
-            var n=20
+            var n=30
             svg
                 .append("rect")
                 .attr("x", 3*n)
@@ -327,14 +334,14 @@
                 svg.append("text")
                 .attr("class", "legendtext")
                 .attr("x", 4.5*n)
-                .attr("y", 9.5)
+                .attr("y", n/2)
                 .attr("dy", "0.35em")
                 .text(timeLabel[0]);
 
             svg.append("text")
                 .attr("class", "legendtext")
                 .attr("x", 10.5 * n)
-                .attr("y", 9.5)
+                .attr("y", n/2)
                 .attr("dy", "0.35em")
                 .text(timeLabel[1]);
         

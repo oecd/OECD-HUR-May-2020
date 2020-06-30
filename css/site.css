@@ -168,7 +168,7 @@ display: flex;
 .legendtext{
   font-family: 'Noto Sans', sans-serif;
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 2rem;
   color:#575757;
   stroke:none
 }
@@ -212,7 +212,12 @@ div.tooltip {
   color:#575757;
   stroke:none
 }
-  
+
+
+.legendtext{
+  font-size: 1.75rem;
+}
+
 }
 
 @media only screen and (max-width: 600px) {
@@ -224,6 +229,10 @@ div.tooltip {
   font-size: 1.05rem;
   color:#575757;
   stroke:none
+}
+
+.legendtext{
+  font-size: 1.5rem;
 }
   
 }
