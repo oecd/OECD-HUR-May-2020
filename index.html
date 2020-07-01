@@ -318,7 +318,7 @@
             var n=30
             svg
                 .append("rect")
-                .attr("x", 3*n)
+                .attr("x", 2*n)
                 .attr("width", n)
                 .attr("height", n)
                 .attr("fill", z(timeLabel[0]));
@@ -326,21 +326,21 @@
 
             svg
                 .append("rect")
-                .attr("x", 9*n)
+                .attr("x", 7.5*n)
                 .attr("width", n)
                 .attr("height", n)
                 .attr("fill", z(timeLabel[1]));
            
                 svg.append("text")
                 .attr("class", "legendtext")
-                .attr("x", 4.5*n)
+                .attr("x", 3.25*n)
                 .attr("y", n/2)
                 .attr("dy", "0.35em")
                 .text(timeLabel[0]);
 
             svg.append("text")
                 .attr("class", "legendtext")
-                .attr("x", 10.5 * n)
+                .attr("x", 8.75 * n)
                 .attr("y", n/2)
                 .attr("dy", "0.35em")
                 .text(timeLabel[1]);
