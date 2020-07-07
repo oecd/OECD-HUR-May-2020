@@ -75,7 +75,7 @@
 
             <!--</div>-->
         
-        <h1>Job losses greater for young people and women</h1>
+        <h1>Unemployment higher for young people and women</h1>
         <h2>Unemployment rate as % of labour force</h2>
         <br>
         <div id="modedemploi">
@@ -101,9 +101,11 @@
     $(document).ready(function () {
         $('#country_dropdown').select2({ width: '180px' });
     });
+    
+
 
     var label = [{ "code": "LRHUTTTT", "label": "Total" },{ "code": "LRHU24TT", "label": "Young people" }, { "code": "LRHUADTT", "label": "Aged 25+"}, { "code": "LRHUTTMA", "label": "Men" },{"code":"LRHUTTFE","label":"Women"}]
-    var timeLabel= ["March 2020", "April 2020"]
+    var timeLabel= ["February 2020", "May 2020"]
     var nested ;
 
     var ISOmemory;
@@ -118,22 +120,24 @@
         .attr("class", "tooltip")
         .style("opacity", 0);
 
-    d3.xml("https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/STLABOUR/AUS+AUT+BEL+CAN+CHL+COL+CZE+DNK+EST+FIN+FRA+DEU+GRC+HUN+ISL+IRL+ISR+ITA+JPN+KOR+LVA+LTU+LUX+MEX+NLD+NZL+NOR+POL+PRT+SVK+SVN+ESP+SWE+CHE+TUR+GBR+USA+OECD+G-7+EA19+BRA+IDN+RUS+ZAF.LRHU24TT+LRHUADTT+LRHUTTFE+LRHUTTMA+LRHUTTTT.STSA.M/all?startTime=2020-03&endTime=2020-04", function (data) {
+    d3.xml("https://stats.oecd.org/restsdmx/sdmx.ashx/GetData/STLABOUR/AUS+AUT+BEL+CAN+CHL+COL+CZE+DNK+EST+FIN+FRA+DEU+GRC+HUN+ISL+IRL+ISR+ITA+JPN+KOR+LVA+LTU+LUX+MEX+NLD+NZL+NOR+POL+PRT+SVK+SVN+ESP+SWE+CHE+TUR+GBR+USA+OECD+G-7+EA19+BRA+IDN+RUS+ZAF.LRHU24TT+LRHUADTT+LRHUTTFE+LRHUTTMA+LRHUTTTT.STSA.M/all?startTime=2020-02&endTime=2020-05", function (data) {
+ 
             data = [].map.call(data.documentElement.getElementsByTagName("Series"), function (serie) {
-             if(( serie.getElementsByTagName("Obs")[1]!==undefined ) ){
+         
+             if(( serie.getElementsByTagName("Obs")[3]!==undefined ) ){ //Check if latest month is available 0 is first period in queries and then increment from here
                 return {
                 location: serie.getElementsByTagName("SeriesKey")[0].childNodes[0].getAttribute("value"),
                 measure: serie.getElementsByTagName("SeriesKey")[0].childNodes[1].getAttribute("value"),
-                    value:[ {time:serie.getElementsByTagName("Obs")[0].childNodes[0].childNodes[0].nodeValue,
-                value: +serie.getElementsByTagName("Obs")[0].childNodes[1].getAttribute("value")
+                value:[ {time:serie.getElementsByTagName("Obs")[0].childNodes[0].childNodes[0].nodeValue, //change array value after ("Obs) to get the month you're interested into as first value
+                value: +serie.getElementsByTagName("Obs")[0].childNodes[1].getAttribute("value")//change array value after ("Obs) to get the month you're interested into as first value
                 }, {
-                    time: serie.getElementsByTagName("Obs")[1].childNodes[0].childNodes[0].nodeValue,
-                    value: +serie.getElementsByTagName("Obs")[1].childNodes[1].getAttribute("value")
+                    time: serie.getElementsByTagName("Obs")[3].childNodes[0].childNodes[0].nodeValue,//change array value after ("Obs) to get the month you're interested into as 2nd value
+                    value: +serie.getElementsByTagName("Obs")[3].childNodes[1].getAttribute("value")//change array value after ("Obs) to get the month you're interested into as 2nd value
                     }]
                 };
             }else return {};
             });
-                
+            console.log(data)         
             nested = d3.nest()
                 .key(k => k.location).sortKeys(d3.ascending)
                 .entries(data);
@@ -245,7 +249,7 @@
                 if (k.values[0].measure == "LRHUTTFE")
                     XLabel = "Women"
 
-                chartData.push({"measure": XLabel,"March 2020": k.values[0].value[0].value,"April 2020": k.values[0].value[1].value})
+                chartData.push({"measure": XLabel,"February 2020": k.values[0].value[0].value,"May 2020": k.values[0].value[1].value})
             })
 
             
@@ -255,7 +259,7 @@
                 .data(chartData)
                 .enter().append("g")
                 .style("opacity", function (d) {
-                    console.log(d)
+                    
                     if(d["measure"]== "Young people" || d["measure"] == "Women")
                         return "1";
                     else
@@ -315,7 +319,7 @@
 
                
 
-            var n=30
+            var n=35
             svg
                 .append("rect")
                 .attr("x", 2*n)
